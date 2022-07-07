@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style>
+   a {
+    text-decoration:none;
+    color:black;
+   }
+  </style>
+
+<div class="align-text-top">
+    <h3 class="align-text-top">Запланировано</h3>
+    <div th:if = "${plannedAnime=='NoData'}">Пока не добавлено ни одного аниме</div>
+    <th:block th:if="${plannedAnime!='NoData'}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Genre</th>
+                <th scope="col">
+                    <a href="/sort/plannedAnime/numberOfEpisodes">&#9662 Number Of Episodes</a>
+                    </th>
+                <th scope="col">
+                    <a href="/sort/plannedAnime/rating">&#9662 Rating</a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="plannedAnime : ${plannedAnime}">
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col" th:text="${plannedAnime.name}"></th>
+                    <th scope="col" th:text="${plannedAnime.genre}"></th>
+                    <th scope="col" th:text="${plannedAnime.numberOfEpisodes}"></th>
+                    <th scope="col" th:text="${plannedAnime.rating}"></th>
+                    <th>
+                        <form method="get" th:action="@{/deleteAnime/{id}(id=${plannedAnime.id})}">
+                            <input class="btn btn-primary" type="submit" value="Удалить">
+                        </form>
+                    </th>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </th:block>
+</div>
+
+
+<div class="mx-auto mb-3" >
+    <h3 class="mx-auto mb-3">Смотрю</h3>
+    <div th:if = "${watchingAnime=='NoData'}">Пока не добавлено ни одного аниме</div>
+    <th:block th:if="${watchingAnime!='NoData'}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Genre</th>
+                <th scope="col">
+                    <a href="/sort/watchingAnime/numberOfEpisodes">&#9662 Number Of Episodes</a>
+                </th>
+                <th scope="col">
+                    <a href="/sort/watchingAnime/rating">&#9662 Rating</a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="watchingAnime : ${watchingAnime}">
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col" th:text="${watchingAnime.name}"></th>
+                    <th scope="col" th:text="${watchingAnime.genre}"></th>
+                    <th scope="col" th:text="${watchingAnime.numberOfEpisodes}"></th>
+                    <th scope="col" th:text="${watchingAnime.rating}"></th>
+                    <th>
+                        <form method="get" th:action="@{/deleteAnime/{id}(id=${watchingAnime.id})}">
+                            <input class="btn btn-primary" type="submit" value="Удалить">
+                        </form>
+                    </th>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </th:block>
+</div>
+
+<div class="mx-auto mb-3" style="text-align=center">
+    <h3 class="mx-auto">Просмотрено</h3>
+    <div th:if = "${watchedAnime=='NoData'}">Пока не добавлено ни одного аниме</div>
+    <th:block th:if="${watchedAnime!='NoData'}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Genre</th>
+                <th scope="col">
+                    <a href="/sort/watchedAnime/numberOfEpisodes">&#9662 Number Of Episodes</a>
+                </th>
+                <th scope="col">
+                    <a href="/sort/watchedAnime/rating">&#9662 Rating</a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="watchedAnime : ${watchedAnime}">
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col" th:text="${watchedAnime.name}"></th>
+                    <th scope="col" th:text="${watchedAnime.genre}"></th>
+                    <th scope="col" th:text="${watchedAnime.numberOfEpisodes}"></th>
+                    <th scope="col" th:text="${watchedAnime.rating}"></th>
+                    <th>
+                        <form method="get" th:action="@{/deleteAnime/{id}(id=${watchedAnime.id})}">
+                            <input class="btn btn-primary" type="submit" value="Удалить">
+                        </form>
+                    </th>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </th:block>
+</div>
+
+
+
+<form method="get" action="/addAnime">
+    <input class="btn btn-primary" type="submit" value="Добавить">
+</form>
+</body>
+</html>

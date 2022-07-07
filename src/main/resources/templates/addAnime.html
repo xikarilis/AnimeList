@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+<style>
+   .error {
+    font-size: 120%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: red;
+    margin-bottom:10px;
+   }
+   .mb{
+   margin-top:15px;
+   }
+  </style>
+<div th:if = "${Error=='Incorrect data'}" class="error">Неверно заполенены поля</div>
+<form method="post" action="addAnime">
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" id="Name" name="name">
+    </div>
+    <div class="form-group">
+        <label for="Genre">Genre</label>
+        <input type="text" class="form-control" id="Genre" name="genre">
+    </div>
+    <div class="form-group">
+        <label for="number">Number Of Episodes</label>
+        <input type="text" class="form-control" id="number" name="numberOfEpisodes">
+    </div>
+    <div class="form-group">
+        <label for="rating">Rating</label>
+        <input type="text" class="form-control" id="rating" name="rating">
+    </div>
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select name="status" class="form-control" id="status">
+            <option>planned</option>
+            <option>watching</option>
+            <option>watched</option>
+        </select>
+    </div>
+    <input class="btn btn-primary mb" type="submit" value="Добавить">
+</form>
+</body>
+</html>
